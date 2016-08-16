@@ -2,18 +2,7 @@
 
 # a script to find the full path of where a symbolic link points to
 
-CURRENT_PATH="$(pwd)"
 
-FULL_PATH_TO_SYMLINK=$CURRENT_PATH'/'$1
-
-PREFIX="$(dirname "$FULL_PATH_TO_SYMLINK")"
-
-PATH_OF_SYMLINK="$(readlink "$1")"
-
-FINAL=$PREFIX'/'$PATH_OF_SYMLINK
-
-
-
-echo "$FINAL"
+echo $(cd $(dirname $(dirname $(which $1))/$(readlink $(which $1))); pwd)/$1
 
 
